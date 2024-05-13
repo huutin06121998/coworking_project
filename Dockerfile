@@ -1,28 +1,13 @@
-FROM python:3.10-slim-buster
-
-ENV APP_PORT=5153
-ENV DB_USERNAME=postgres
-ENV DB_PASSWORD=udacity
-ENV DB_HOST=127.0.0.1
-ENV DB_PORT=5432
-ENV DB_NAME=coworking
+FROM public.ecr.aws/docker/library/python:3.10-alpine 
 
 USER root
 
-WORKDIR /app
+WORKDIR /src
 
-COPY analytics  /app/analytics
+COPY . /src
 
-COPY db  /app/db
+# Dependencies are installed during build time in the container itself so we don't have OS mismatch
+RUN pip install -r requirements.txt
 
-COPY ./requirements.txt requirements.txt
- 
-
-RUN pip install python-dotenv
-
-# Dependencies are installed during build time in the container  
-RUN pip install --upgrade pip && pip install -r /app/analytics/requirements.txt
-
-EXPOSE 5153
-
-CMD ["python", "/app/analytics/app.py"]
+# Start  Flask application
+CMD python app.py
