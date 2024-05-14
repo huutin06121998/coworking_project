@@ -11,8 +11,8 @@ phases:
     commands:
       - echo Starting build at `date`
       - echo Building the Docker image...          
-      - docker build -t coworking-udacity:$CODEBUILD_BUILD_NUMBER .
-      - docker tag coworking-udacity:$CODEBUILD_BUILD_NUMBER 553764916355.dkr.ecr.us-east-1.amazonaws.com/coworking-ecr:$CODEBUILD_BUILD_NUMBER
+      - docker build -t coworking-ecr:$CODEBUILD_BUILD_NUMBER .
+      - docker tag coworking-ecr:$CODEBUILD_BUILD_NUMBER 553764916355.dkr.ecr.us-east-1.amazonaws.com/coworking-ecr:$CODEBUILD_BUILD_NUMBER
        
   post_build:
     commands:
