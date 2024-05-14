@@ -1,22 +1,15 @@
-FROM public.ecr.aws/docker/library/python:3.11-alpine
+FROM python:3.10-slim-buster
 
-ENV FLASK_RUN_HOST=0.0.0.0
+USER root
 
-WORKDIR /app/analytics
+WORKDIR /src
 
-RUN apk update && \
-    apk add \
-    pcre \
-    pcre-dev \
-    build-base \
-    gcc \
-    linux-headers \
-    openssl \
-    libffi-dev
+COPY ./requirements.txt requirements.txt
 
-COPY requirements.txt .
+# Dependencies required for psycopg2 (used for Postgres client)
+RUN apt update -y && apt install -y build-essential libpq-dev
 
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
 COPY . .
 
