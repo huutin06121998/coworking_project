@@ -70,7 +70,7 @@
 		aws eks create-addon --addon-name amazon-cloudwatch-observability --cluster-name coworking-cluster
 
 	Step 3. Trigger logging by accessing your application
-		curl a5b6fff8da3e94dbda373d72bcb143a8-358430639.us-east-1.elb.amazonaws.com/api/reports/daily_usage
+		curl a548784451d2d491e8ebfe56c92af7b8-1377714325.us-east-1.elb.amazonaws.com/api/reports/daily_usage
 	Step 4: Open up CloudWatch Log groups page
 			CloudWatch>Log groups, we see the new logs  (/aws/containerinsights/coworking-cluster/application
 /performance)
