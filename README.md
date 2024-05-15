@@ -64,14 +64,16 @@
 		- please refer screenshot/describe deployment service coworking.png and screenshot/describe deployment service.png
 #6. Check AWS CloudWatch for application logs.
 	step 1. Attach the CloudWatchAgentServerPolicy IAM policy to worker nodes:
-		aws iam attach-role-policy --role-name eksctl-cluser-coworking-nodegroup-luna-NodeInstanceRole-Q2EzZ6ul5lGk --policy-arn arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy 
+		aws iam attach-role-policy --role-name eksctl-coworking-cluster-nodegroup-NodeInstanceRole-FFu9FKdtoiFe --policy-arn arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy
+ 
 	step 2. Use AWS CLI to install the Amazon CloudWatch Observability EKS add-on:
-		aws eks create-addon --addon-name amazon-cloudwatch-observability --cluster-name cluser-coworking
+		aws eks create-addon --addon-name amazon-cloudwatch-observability --cluster-name coworking-cluster
 
 	Step 3. Trigger logging by accessing your application
 		curl a5b6fff8da3e94dbda373d72bcb143a8-358430639.us-east-1.elb.amazonaws.com/api/reports/daily_usage
 	Step 4: Open up CloudWatch Log groups page
-			CloudWatch>Log groups, we see the new logs  (/aws/containerinsights/cluster-coworking/performance)
+			CloudWatch>Log groups, we see the new logs  (/aws/containerinsights/coworking-cluster/application
+/performance)
  
 	Take a screenshot of AWS CloudWatch Container Insights logs for the application.
 	please refer screenshot/cloudwatch.png
